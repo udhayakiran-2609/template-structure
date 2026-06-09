@@ -1,0 +1,45 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+
+metadata:
+  name: angular-real-app
+  title: Real Angular Application
+  description: Production Angular CLI template
+
+spec:
+  owner: group:platform-team
+  type: service
+
+  parameters:
+    - title: App Info
+      required:
+        - name
+        - owner
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        owner:
+          type: string
+
+  steps:
+    - id: fetch
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          name: ${{ parameters.name }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+
+    - id: publish
+      action: publish:github
+      input:
+        repoUrl: github.com?owner=udhayakiran-stack&repo=${{ parameters.name }}
+
+    - id: register
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoPath: /catalog-info.yaml
