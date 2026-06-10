@@ -1,0 +1,45 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+
+metadata:
+  name: nodejs-service
+  title: NodeJS Service
+  description: Create a NodeJS microservice
+
+spec:
+  owner: platform-team
+  type: service
+
+  parameters:
+    - title: Service Info
+      required:
+        - appName
+
+      properties:
+        appName:
+          type: string
+          title: Application Name
+
+        description:
+          type: string
+          title: Description
+
+        owner:
+          type: string
+          title: Owner
+
+  steps:
+    - id: fetch
+      name: Fetch Skeleton
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          appName: ${{ parameters.appName }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+
+  output:
+    links:
+      - title: Generated Project
+        url: "."
