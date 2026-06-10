@@ -4,6 +4,7 @@ kind: Deployment
 metadata:
   name: ${{ values.name }}
   labels:
+    app: ${{ values.name }}
     backstage.io/kubernetes-id: ${{ values.name }}
 
 spec:
