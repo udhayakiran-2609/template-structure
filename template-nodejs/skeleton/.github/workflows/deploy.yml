@@ -20,20 +20,20 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ '${{ github.actor }}' }}
+          password: ${{ '${{ secrets.GITHUB_TOKEN }}' }}
 
       - name: Build and Push
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: ghcr.io/udhayakiran-stack/${{ github.event.repository.name }}:latest
+          tags: ghcr.io/udhayakiran-stack/${{ '${{ github.event.repository.name }}' }}:latest
 
       - name: Configure Kubeconfig
         run: |
           mkdir -p ~/.kube
-          echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
+          echo "${{ '${{ secrets.KUBECONFIG }}' }}" > ~/.kube/config
 
       - name: Deploy to Kubernetes
         run: |
@@ -41,4 +41,4 @@ jobs:
 
       - name: Wait for rollout
         run: |
-          kubectl rollout status deployment/${{ github.event.repository.name }}
+          kubectl rollout status deployment/${{ '${{ github.event.repository.name }}' }}
