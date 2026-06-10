@@ -30,8 +30,14 @@ jobs:
           push: true
           tags: ghcr.io/udhayakiran-stack/${{ '${{ github.event.repository.name }}' }}:latest
 
-      - name: Deploy
+      - name: Deploy to Kubernetes
         run: |
           kubectl apply -f k8s/
+
+      - name: Restart Deployment
+        run: |
           kubectl rollout restart deployment/${{ '${{ github.event.repository.name }}' }}
+
+      - name: Wait for Rollout
+        run: |
           kubectl rollout status deployment/${{ '${{ github.event.repository.name }}' }}
