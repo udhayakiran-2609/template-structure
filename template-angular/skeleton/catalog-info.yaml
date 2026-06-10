@@ -2,10 +2,10 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 
 metadata:
-  name: ${{ values.appName  }}
+  name: ${{ values.name  }}
   description: ${{ values.description }}
   annotations:
-    github.com/project-slug: udhayakiran-stack/${{ values.appName  }}
+    github.com/project-slug: udhayakiran-stack/${{ values.name  }}
     backstage.io/techdocs-ref: dir:.
 spec:
   type: service

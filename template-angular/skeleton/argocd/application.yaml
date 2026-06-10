@@ -1,5 +1,5 @@
 metadata:
-  name: ${{ values.appName }}
+  name: ${{ values.name }}
 
 spec:
   destination:
