@@ -2,9 +2,9 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 
 metadata:
-  name: angular-real-app
-  title: Real Angular Application
-  description: Production Angular CLI template
+  name: angular-service
+  title: Angular Service
+  description: Create an Angular microservice
 
 spec:
   owner: group:platform-team
