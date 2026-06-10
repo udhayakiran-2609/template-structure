@@ -13,10 +13,10 @@ spec:
   parameters:
     - title: Service Info
       required:
-        - appName
+        - name
 
       properties:
-        appName:
+        name:
           type: string
           title: Application Name
 
@@ -35,7 +35,7 @@ spec:
       input:
         url: ./skeleton
         values:
-          appName: ${{ parameters.appName }}
+          name: ${{ parameters.name }}
           description: ${{ parameters.description }}
           owner: ${{ parameters.owner }}
 

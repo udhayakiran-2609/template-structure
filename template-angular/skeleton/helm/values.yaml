@@ -1,8 +1,8 @@
 app:
-  name: {{ cookiecutter.appName }}
+  name: {{ cookiecutter.name }}
 
 image:
-  repository: ghcr.io/my-org/{{ cookiecutter.appName }}
+  repository: ghcr.io/my-org/{{ cookiecutter.name }}
   tag: latest
 
 service:
@@ -12,4 +12,4 @@ service:
 ingress:
   enabled: true
   className: nginx
-  host: {{ cookiecutter.appName }}.example.com
+  host: {{ cookiecutter.name }}.example.com

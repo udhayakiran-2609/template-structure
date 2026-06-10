@@ -18,10 +18,13 @@ spec:
       properties:
         name:
           type: string
+          title: Application Name
         description:
           type: string
+          title: Description
         owner:
           type: string
+          title: Owner
 
   steps:
     - id: fetch
@@ -29,7 +32,7 @@ spec:
       input:
         url: ./skeleton
         values:
-          appName: ${{ parameters.appName }}
+          name: ${{ parameters.name }}
           description: ${{ parameters.description }}
           owner: ${{ parameters.owner }}
           namespace: ${{ parameters.namespace }}
