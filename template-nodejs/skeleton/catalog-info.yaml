@@ -4,12 +4,10 @@ kind: Component
 metadata:
   name: ${{ values.name }}
   description: ${{ values.description }}
-
   annotations:
-    github.com/project-slug: udhayakiran-stack/${{ values.name }}
-    backstage.io/techdocs-ref: dir: .
+    github.com/project-slug: udhayakiran-stack/${{ values.name  }}
+    backstage.io/techdocs-ref: dir:.
     backstage.io/kubernetes-id: ${{ values.name }}
-
 spec:
   type: service
   owner: ${{ values.owner }}
