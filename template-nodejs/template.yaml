@@ -3,31 +3,68 @@ kind: Template
 
 metadata:
   name: nodejs-service
-  title: NodeJS Service
-  description: Create a NodeJS microservice
+  title: NodeJS Microservice
+  description: Golden Path template to scaffold a production-ready NodeJS microservice
+  tags:
+    - nodejs
+    - microservice
+    - golden-path
 
 spec:
-  owner: platform-team
+  owner: group:platform-team
   type: service
 
   parameters:
-    - title: Service Info
+    - title: Service Information
       required:
         - name
         - owner
-
+        - description
       properties:
         name:
+          title: Service Name
           type: string
-          title: Application Name
+          description: Unique name for the microservice (lowercase, hyphens only)
+          pattern: '^[a-z0-9-]+$'
+          ui:autofocus: true
 
         description:
-          type: string
           title: Description
+          type: string
+          description: What does this service do?
 
         owner:
-          type: string
           title: Owner
+          type: string
+          description: Team that owns this service
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds:
+              - Group
+
+        lifecycle:
+          title: Lifecycle
+          type: string
+          description: Current lifecycle stage
+          enum:
+            - experimental
+            - production
+            - deprecated
+          default: experimental
+
+    - title: Repository Location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: GitHub Repository
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              - udhayakiran-stack
 
   steps:
     - id: fetch
@@ -39,12 +76,17 @@ spec:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
           owner: ${{ parameters.owner }}
+          lifecycle: ${{ parameters.lifecycle }}
+          repoUrl: ${{ parameters.repoUrl }}
+
     - id: publish
       name: Publish to GitHub
       action: publish:github
       input:
-        repoUrl: github.com?owner=udhayakiran-stack&repo=${{ parameters.name }}
+        repoUrl: ${{ parameters.repoUrl }}
         defaultBranch: main
+        description: ${{ parameters.description }}
+        repoVisibility: private
 
     - id: register
       name: Register in Catalog
@@ -57,6 +99,6 @@ spec:
     links:
       - title: Repository
         url: ${{ steps.publish.output.remoteUrl }}
-      - title: Open Component
+      - title: Open in Catalog
         icon: catalog
         entityRef: ${{ steps.register.output.entityRef }}

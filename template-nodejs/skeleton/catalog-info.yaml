@@ -1,14 +1,12 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
-
 metadata:
   name: ${{ values.name }}
   description: ${{ values.description }}
   annotations:
-    github.com/project-slug: udhayakiran-stack/${{ values.name  }}
+    github.com/project-slug: udhayakiran-stack/${{ values.name }}
     backstage.io/techdocs-ref: dir:.
-    backstage.io/kubernetes-id: ${{ values.name }}
 spec:
   type: service
+  lifecycle: ${{ values.lifecycle }}
   owner: ${{ values.owner }}
-  lifecycle: production

@@ -3,31 +3,71 @@ kind: Template
 
 metadata:
   name: angular-service
-  title: Angular Service
-  description: Create an Angular microservice
+  title: Angular Frontend Service
+  description: Golden Path template to scaffold a production-ready Angular application
+  tags:
+    - angular
+    - frontend
+    - golden-path
 
 spec:
   owner: group:platform-team
-  type: service
+  type: website
 
   parameters:
-    - title: App Info
+    - title: Application Information
       required:
         - name
         - owner
+        - description
       properties:
         name:
-          type: string
           title: Application Name
+          type: string
+          description: Unique name for the app (lowercase, hyphens only)
+          pattern: '^[a-z0-9-]+$'
+          ui:autofocus: true
+
         description:
-          type: string
           title: Description
-        owner:
           type: string
+          description: What does this app do?
+
+        owner:
           title: Owner
+          type: string
+          description: Team that owns this app
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds:
+              - Group
+
+        lifecycle:
+          title: Lifecycle
+          type: string
+          enum:
+            - experimental
+            - production
+            - deprecated
+          default: experimental
+
+    - title: Repository Location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: GitHub Repository
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              - udhayakiran-stack
 
   steps:
     - id: fetch
+      name: Fetch Skeleton
       action: fetch:template
       input:
         url: ./skeleton
@@ -35,22 +75,29 @@ spec:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
           owner: ${{ parameters.owner }}
-          namespace: ${{ parameters.namespace }}
+          lifecycle: ${{ parameters.lifecycle }}
+          repoUrl: ${{ parameters.repoUrl }}
 
     - id: publish
+      name: Publish to GitHub
       action: publish:github
       input:
-        repoUrl: github.com?owner=udhayakiran-stack&repo=${{ parameters.name }}
+        repoUrl: ${{ parameters.repoUrl }}
+        defaultBranch: main
+        description: ${{ parameters.description }}
+        repoVisibility: private
 
     - id: register
+      name: Register in Catalog
       action: catalog:register
       input:
         repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
         catalogInfoPath: /catalog-info.yaml
+
   output:
     links:
       - title: Repository
         url: ${{ steps.publish.output.remoteUrl }}
-      - title: Open Component
+      - title: Open in Catalog
         icon: catalog
         entityRef: ${{ steps.register.output.entityRef }}
