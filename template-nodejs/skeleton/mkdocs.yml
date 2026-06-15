@@ -1,12 +1,7 @@
-site_name: ${{ values.name }}
-site_description: ${{ values.description }}
-docs_dir: docs
- 
+site_name: My Service
+
 nav:
   - Home: index.md
-  - Getting Started: getting-started.md
-  - API Reference: api.md
-  - Deployment: deployment.md
- 
+
 plugins:
   - techdocs-core
