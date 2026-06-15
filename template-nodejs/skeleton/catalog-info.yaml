@@ -4,9 +4,10 @@ metadata:
   name: ${{ values.name }}
   description: ${{ values.description }}
   annotations:
-    github.com/project-slug: udhayakiran-stack/${{ values.name }}
     backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: udhayakiran-stack/${{ values.name }}
 spec:
   type: service
   lifecycle: ${{ values.lifecycle }}
   owner: ${{ values.owner }}
+  system: core-platform

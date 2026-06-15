@@ -26,5 +26,5 @@ jobs:
           cluster_name: backstage-prod
           location: us-central1
 
-      - run: |
-          kubectl apply -f k8s/
+      # - run: |
+      #     kubectl apply -f k8s/

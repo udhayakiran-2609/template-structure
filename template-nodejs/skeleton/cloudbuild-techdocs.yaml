@@ -1,0 +1,22 @@
+steps:
+  # Step 1: Generate TechDocs using Python + techdocs-cli
+  - name: 'node:18-slim'
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        apt-get update && apt-get install -y python3 python3-pip --no-install-recommends
+        pip3 install mkdocs-techdocs-core --break-system-packages
+        npx --yes @techdocs/cli generate --source-dir . --output-dir ./site
+
+  # Step 2: Upload to GCS
+  - name: 'gcr.io/cloud-builders/gsutil'
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        SERVICE_NAME=$(cat catalog-info.yaml | grep "^  name:" | head -1 | awk '{print $2}')
+        gsutil -m cp -r site/* gs://backstage-beindiansai-techdocs/default/component/$${SERVICE_NAME}/
+
+options:
+  logging: CLOUD_LOGGING_ONLY
