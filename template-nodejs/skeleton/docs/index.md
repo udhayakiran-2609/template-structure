@@ -1,21 +1,32 @@
 # ${{ values.name }}
 
-## Overview
 ${{ values.description }}
 
+## Overview
+
+This service was scaffolded using the **My Company Node.js Template** via Backstage.
+
+| Property | Value |
+|----------|-------|
+| Owner | ${{ values.owner }} |
+| Language | Node.js |
+| Deployed on | Google Cloud Run |
+
 ## Quick Start
+
 ```bash
+# Install dependencies
 npm install
+
+# Run locally
 npm run dev
+
+# Run tests
+npm test
 ```
 
-## Owner
-- **Team:** ${{ values.owner }}
-- **Lifecycle:** ${{ values.lifecycle }}
+## Links
 
-## Features
-- REST API with Express.js
-- PostgreSQL database
-- Docker support
-- CI/CD with Cloud Build
-- TechDocs auto-generation
+- [API Reference](api.md)
+- [Deployment Guide](deployment.md)
+- [Getting Started](getting-started.md)

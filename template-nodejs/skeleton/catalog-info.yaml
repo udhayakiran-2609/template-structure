@@ -5,9 +5,13 @@ metadata:
   description: ${{ values.description }}
   annotations:
     backstage.io/techdocs-ref: dir:.
-    github.com/project-slug: udhayakiran-stack/${{ values.name }}
+    github.com/project-slug: ${{ values.repoUrl }}
+    backstage.io/kubernetes-id: ${{ values.name }}
+  tags:
+    - nodejs
+    - cloud-run
 spec:
   type: service
-  lifecycle: ${{ values.lifecycle }}
+  lifecycle: production
   owner: ${{ values.owner }}
-  system: core-platform
+  system: ${{ values.system | default("default") }}

@@ -63,7 +63,7 @@ spec:
             allowedHosts:
               - github.com
             allowedOwners:
-              - udhayakiran-stack
+              - udhayakiran-2609
 
   steps:
     - id: fetch

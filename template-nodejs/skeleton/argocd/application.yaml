@@ -8,7 +8,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/udhayakiran-stack/${{ values.name }}.git
+    repoURL: https://github.com/udhayakiran-2609/${{ values.name }}.git
     targetRevision: main
     path: k8s
 
