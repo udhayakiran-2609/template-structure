@@ -6,6 +6,7 @@ metadata:
   annotations:
     github.com/project-slug: udhayakiran-2609/${{ values.name }}
     backstage.io/techdocs-ref: dir:.
+    backstage.io/kubernetes-id: ${{ values.name }}
 spec:
   type: website
   lifecycle: ${{ values.lifecycle }}
