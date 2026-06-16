@@ -13,10 +13,19 @@ jobs:
     steps:
 
       - uses: actions/checkout@v4
+      - name: Check Secret
+        run: |
+            if [ -z "${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}" ]; then
+            echo "SECRET EMPTY"
+            exit 1
+            else
+            echo "SECRET FOUND"
+            fi
 
       - uses: google-github-actions/auth@v2
         with:
-          credentials_json: ${{ secrets.GCP_SA }}
+            workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+            service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
       - uses: google-github-actions/setup-gcloud@v2
 
@@ -26,11 +35,11 @@ jobs:
 
       - run: |
           docker build \
-          -t asia-south1-docker.pkg.dev/PROJECT/apps/${{ github.event.repository.name }}:latest .
+          -t asia-south1-docker.pkg.dev/backstage-demo-499507/apps/${{ github.event.repository.name }}:latest .
 
       - run: |
           docker push \
-          asia-south1-docker.pkg.dev/PROJECT/apps/${{ github.event.repository.name }}:latest
+          asia-south1-docker.pkg.dev/backstage-demo-499507/apps/${{ github.event.repository.name }}:latest
 
       - run: |
           gcloud container clusters get-credentials backstage-cluster \
