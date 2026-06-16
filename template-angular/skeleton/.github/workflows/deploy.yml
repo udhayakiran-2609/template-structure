@@ -26,11 +26,11 @@ jobs:
 
       - run: |
           docker build \
-          -t asia-south1-docker.pkg.dev/backstage-demo-499507/apps/${{ '{{ github.event.repository.name }}' }}:latest .
+            -t asia-south1-docker.pkg.dev/backstage-demo-499507/apps/${{ '${{ github.event.repository.name }}' }}:latest .
 
       - run: |
           docker push \
-          asia-south1-docker.pkg.dev/backstage-demo-499507/apps/${{ '{{ github.event.repository.name }}' }}:latest
+          asia-south1-docker.pkg.dev/backstage-demo-499507/apps/${{ '${{ github.event.repository.name }}' }}:latest
 
       - run: |
           gcloud container clusters get-credentials backstage-cluster \
