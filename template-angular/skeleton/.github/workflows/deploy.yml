@@ -13,19 +13,10 @@ jobs:
     steps:
 
       - uses: actions/checkout@v4
-      - name: Check Secret
-        run: |
-            if [ -z "${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}" ]; then
-            echo "SECRET EMPTY"
-            exit 1
-            else
-            echo "SECRET FOUND"
-            fi
 
       - uses: google-github-actions/auth@v2
         with:
-            workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-            service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+          credentials_json: '${{ secrets.GCP_SA }}'
 
       - uses: google-github-actions/setup-gcloud@v2
 
