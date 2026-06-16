@@ -1,4 +1,6 @@
 site_name: Documentation Site
-docs_dir: index.md
+docs_dir: docs       
+nav:
+  - Introduction: index.md
 plugins:
   - techdocs-core
