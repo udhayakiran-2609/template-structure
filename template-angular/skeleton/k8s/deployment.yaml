@@ -20,7 +20,7 @@ spec:
       containers:
       - name: ${{ values.name }}
 
-        image: asia-south1-docker.pkg.dev/backstage-demo-499507/apps/{{ values.name }}:latest
+        image: asia-south1-docker.pkg.dev/backstage-demo-499507/apps/${{ values.name }}:latest
 
         ports:
         - containerPort: 80
