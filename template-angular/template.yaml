@@ -85,7 +85,7 @@ spec:
         repoUrl: ${{ parameters.repoUrl }}
         defaultBranch: main
         description: ${{ parameters.description }}
-        repoVisibility: private
+        repoVisibility: public
 
     - id: register
       name: Register in Catalog
