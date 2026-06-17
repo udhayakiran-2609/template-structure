@@ -7,4 +7,4 @@ spec:
   targets:
     - ./template-angular/template.yaml
     - ./template-nodejs/template.yaml
-    # - ./template-react/template.yaml
+    - ./template-react/template.yaml
