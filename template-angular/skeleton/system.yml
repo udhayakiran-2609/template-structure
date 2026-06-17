@@ -1,0 +1,6 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: ${{ values.name }}
+spec:
+  owner: group:default/${{ values.owner }}

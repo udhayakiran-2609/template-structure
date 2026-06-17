@@ -6,5 +6,4 @@ metadata:
 spec:
   type: team
   profile:
-    displayName: ${{ values.displayName }}
-  children: []
+    displayName: ${{ values.name }}
