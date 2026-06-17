@@ -9,7 +9,6 @@ annotations:
 # GitHub Repository
 github.com/project-slug: udhayakiran-2609/${{ values.name }}
 
-```
 # TechDocs
 backstage.io/techdocs-ref: dir:.
 
@@ -24,7 +23,6 @@ grafana/dashboard-selector: ${{ values.name }}
 
 # Optional Prometheus
 prometheus.io/rule: ${{ values.name }}
-```
 
 tags:
 - angular
