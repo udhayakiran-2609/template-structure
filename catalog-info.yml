@@ -1,0 +1,10 @@
+# catalog-info.yaml  ← repo root
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: all-templates
+spec:
+  targets:
+    - ./template-angular/template.yaml
+    - ./template-nodejs/template.yaml
+    - ./template-react/template.yaml
