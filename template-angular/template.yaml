@@ -3,7 +3,7 @@ kind: Template
 
 metadata:
   name: angular-service
-  title: Angular Frontend Service
+  title: Angular Frontend
   description: Golden Path template to scaffold a production-ready Angular application
   tags:
     - angular
