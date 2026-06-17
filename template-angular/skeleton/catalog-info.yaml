@@ -1,13 +1,39 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
+
 metadata:
-  name: ${{ values.name }}
-  description: ${{ values.description }}
-  annotations:
-    github.com/project-slug: udhayakiran-2609/${{ values.name }}
-    backstage.io/techdocs-ref: dir:.
-    backstage.io/kubernetes-id: ${{ values.name }}
+name: ${{ values.name }}
+description: ${{ values.description }}
+
+annotations:
+# GitHub Repository
+github.com/project-slug: udhayakiran-2609/${{ values.name }}
+
+```
+# TechDocs
+backstage.io/techdocs-ref: dir:.
+
+# Kubernetes
+backstage.io/kubernetes-id: ${{ values.name }}
+
+# GitHub Actions
+github.com/workflows: deploy.yml
+
+# Optional Grafana Dashboard
+grafana/dashboard-selector: ${{ values.name }}
+
+# Optional Prometheus
+prometheus.io/rule: ${{ values.name }}
+```
+
+tags:
+- angular
+- gcp
+- kubernetes
+
 spec:
-  type: website
-  lifecycle: ${{ values.lifecycle }}
-  owner: ${{ values.owner }}
+type: website
+lifecycle: ${{ values.lifecycle }}
+owner: ${{ values.owner }}
+
+system: developer-portal
